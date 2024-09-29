@@ -1,0 +1,50 @@
+@import "_variables";
+
+.content-wrapper {
+  background: $bg-dark;
+  min-height: 100vh;
+}
+
+.brand-color, .create-color {
+  color: $secondary;
+}
+
+// ===== buttons ====
+.cs-btn-outline-primary {
+  border: 2px solid $secondary;
+  width: 100px;
+  height: 38px;
+
+  &:hover {
+    background-color: $primary !important;
+    color: $bg-white !important;
+    border-color: $secondary !important;
+  }
+}
+
+.cs-btn {
+  background: $linear-gradient;
+}
+
+.btn-signup,
+.btn-login,
+.signup-role,
+.cs-btn-outline-primary {
+  color: $secondary;
+}
+
+// ==== Auth form-container =====
+.form-container {
+  max-width: 450px;
+
+  input::placeholder {
+    color: $secondary;
+  }
+
+  .login-container {
+    box-shadow: 0 2px 2px $navbar-light;
+  }
+
+}
+
+

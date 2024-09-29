@@ -1,0 +1,106 @@
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
+@import "~animate.css/animate.css";
+@import "~datatables.net-dt/css/jquery.dataTables.css";
+
+//-------------------------------------------------
+
+* {
+  //font-family: 'Roboto', sans-serif !important;
+  padding: 0;
+  margin: 0;
+}
+
+// ==== header ====
+
+.header {
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
+
+  .search {
+    background: transparent;
+    color: $white;
+    border-color: $secondary;
+
+    &::placeholder {
+      position: relative;
+      color: $secondary;
+      font-weight: lighter;
+    }
+
+    &:focus {
+      background: transparent;
+      color: $white;
+    }
+  }
+
+  .cs-navbar {
+    background-color: $navbar-light-50;
+
+    & a, .cs-brand a {
+      color: $white;
+    }
+
+    & a:hover {
+      color: $secondary;
+    }
+
+    & li:not(li:first-child){
+      margin-left: 1.2rem;
+    }
+
+  }
+
+  .cs-brand {
+    background-color: $navbar-light;
+  }
+
+}
+
+.main-wrapper {
+
+  // Quick Access
+  .left-sidebar {
+    width: 15%;
+    min-height: calc(100vh - (40px + 57px));
+    position: fixed;
+    background: $navbar-light;  /*linear-gradient(90deg, var(--navbar-light), var(--navbar-color)) ;*/
+    overflow-y: visible;
+  }
+
+  .main-content {
+    margin-left: 15%;
+    background: $bg-dark;
+    overflow: hidden;
+    overflow-y: visible;
+    width: 85%;
+  }
+
+  .content-wrapper {
+    width: 100%;
+    height: calc(100vh - (50px + 62px));
+  }
+
+
+}
+
+
+
+// ===== iconoir =====
+.iconoir-lg {
+  font-size: 24px;
+}
+
+.iconoir-2x {
+  font-size: 32px;
+}
+
+.iconoir-3x {
+  font-size: 48px;
+}
+
+
+
+

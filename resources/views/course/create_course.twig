@@ -1,0 +1,159 @@
+{% extends 'main_layout.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('course') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('course') }}
+{% endblock %}
+
+{% block title %}Course{% endblock %}
+
+{% block content %}
+    <div id="createCourseSection" class="wrapper overflow-hidden">
+        <div class="text-center text-white  mb-3 mt-4 px-5">
+            <h3 class="fw-light guided-text">Let's Prepare your
+                Course</h3>
+            <p class="h4 fw-light">[ Step <span
+                        class="step">1</span> of 4 ]</p>
+            <hr>
+        </div>
+        <!--               COURSE SECTION -->
+        <div class="form-container-2 animate__animated animate__fadeInRight mx-auto ">
+            <div class=" p-4 ">
+                <form id="courseCreationForm">
+                    {{ csrf.fields | raw }}
+                    <div data-id="1" class=" courseInit ">
+                        <div class="mb-3 ">
+                            <label for="" class="mb-2 text-white">Study
+                                Level</label>
+                            <select name="study_level" id="studyLevel"
+                                    class="form-select bg-transparent rounded-0 text-white" required>
+                                <option value="" selected hidden>--
+                                    select level --
+                                </option>
+                                {% for level in levels %}
+                                    <option value="{{ level.id }}">{{ level.levelName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="" class="mb-2 text-white">Semester</label>
+                            <select name="semester" id="semester"
+                                    class="form-select bg-transparent rounded-0 text-white" required>
+                                <option value="" selected hidden>--
+                                    select semester --
+                                </option>
+                                {% for semester in semesters %}
+                                    <option value="{{ semester.id }}">{{ semester.semesterName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="courseName">
+                            <div class="mb-3">
+                                <label for="courseCode" class="mb-2 text-white ">Course
+                                    Code</label>
+                                <select name="course_code" id="courseCode"
+                                        class="form-select bg-transparent rounded-0 text-white" required>
+                                </select>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="courseTitle" class="mb-2 text-white">Course
+                                    Title</label>
+                                <input type="text" name="course_title" id="courseTitle" placeholder=""
+                                       class="form-control bg-transparent rounded-0 text-white" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div data-id="2"
+                         class="courseDescription d-none text-white">
+                        <p class="fs-4 fw-light">Briefly describe
+                            the course</p>
+                        <div class="form-floating">
+                                        <textarea name="description" id="desc"
+                                                  class="form-control bg-transparent text-white rounded-0"
+                                                  placeholder="Briefly "
+                                                  style="min-height: 170px" required></textarea>
+                            <label for="desc" class="text-white-50">Description:</label>
+                        </div>
+                    </div>
+                    <div data-id="3"
+                         class="learningOutcome d-none text-white">
+                        <p class="fs-4 fw-light">Outline the
+                            Objectives for the course </p>
+                        <div class="form-floating">
+                                        <textarea name="objective" id="objective"
+                                                  class="form-control bg-transparent text-white rounded-0"
+                                                  placeholder="Briefly "
+                                                  style="min-height: 170px"></textarea>
+                            <label for="objective"
+                                   class="text-white-50">Learning
+                                Outcome (Objectives):</label>
+                        </div>
+                    </div>
+                    <div class=" d-flex mt-3 justify-content-center btn-prevNext ">
+                        <div class="d-grid border w-50 btn-prev d-none ">
+                            <button type="submit"
+                                    class="btn cs-btn-2 text-white border-1 rounded-0 p-2 shadow">
+                                << Back
+                            </button>
+                        </div>
+                        <div class="d-grid border w-50 btn-next ">
+                            <button type="submit"
+                                    class="btn  cs-btn-2 click text-white border-1 rounded-0 p-2 shadow">
+                                Continue >>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--               course outline creation -->
+
+        <div class=" mt-4 d-none" data-id="4">
+            <div class="px-5 courseForm d-inline-flex" >
+                <div class="me-3">
+                    <span class="text-white-50">Course Code:</span>
+                    <input type="text"  placeholder="" class="form-control  bg-transparent rounded-0 text-white" >
+                </div>
+                <div class="">
+                    <span class="text-white-50">Course Title:</span>
+                    <input type="text"  placeholder="" class="form-control bg-transparent rounded-0 text-white" >
+                </div>
+
+            </div>
+
+            <div class="px-5 course-outline ">
+                <div class="mb-4 d-flex ">
+                    <button type="button" class="btn text-white bg-primary ms-auto"
+                            data-bs-toggle="modal"
+                            data-bs-target="#courseModule">Add Course Outline
+                    </button>
+                </div>
+                <div class="module-table-wrapper table-responsive text-white">
+                    <table id="moduleTable" class="table table-striped ">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Timeline</th>
+                            <th>Course Outline - Module</th>
+                            <th>Progress</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {#  course outline modal  #}
+    {% include 'course/create_course_outline_modal.twig' %}
+{% endblock %}

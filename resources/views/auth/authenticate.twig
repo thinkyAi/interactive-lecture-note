@@ -1,0 +1,137 @@
+{% extends 'auth/layout.twig' %}
+
+{% block title %}.::CeaNotes|auth{% endblock %}
+
+
+{% block content %}
+{#    LOGIN #}
+    <section class="">
+        <div class="form-container mx-auto mt-4">
+            <div id="login" class="login-container rounded-4  p-4 ">
+                <div class="login-text text-center fw-light display-6 mb-4 text-white">
+                    <p class=""><i class="bi bi-person-circle "></i> Login</p>
+                </div>
+                <form action="auth/login" method="post">
+                    {{ csrf.fields | raw }}
+                    <div class="mb-4 ">
+                        <input type="email" name="email" placeholder="Email"
+                               class="form-control bg-transparent rounded-0 text-white {{ errors.email? 'is-invalid': '' }}"
+                        value="{{ old.email }}" required />
+                        <div class="invalid-feedback">
+                            {{ errors.email | first }}
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" name="password" id="" placeholder="Password"
+                               class="form-control bg-transparent rounded-0 text-white {{ errors.password ? 'is-invalid' : '' }}" required />
+                        <div class="invalid-feedback">
+                            {{ errors.password | first }}
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit"
+                                class="btn cs-btn text-white border-0 p-2 shadow">
+                            Login
+                        </button>
+                    </div>
+                    <p class="text-center text-white fw-light mt-2">Don't have an account?
+                        <a href="#" role="button" class="btn-signup">Signup</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{#    SIGNUP #}
+    <section class="">
+        <div class="form-container mx-auto ">
+            <div id="signup"
+                 class="signup-container d-none animate__animated animate__zoomIn rounded-4 p-4">
+                <div class="login-text text-center mb-4">
+                    <p class="h4 fw-light text-white ">
+                        <span class="fw-semibold create-color" >Create</span>
+                        Account
+                    </p>
+                </div>
+                {% set roleID = null %}
+                {% if roleID is defined %}
+                <form action="auth/register/{{ roleID == 'id_number'?: 'lecturer' }}" method="post" id="signForm" >
+                    {{ csrf.fields | raw }}
+                {% else %}
+                <form action="auth/register/{{ roleID == 'matric_number' ?: 'student' }}" method="post" id="signForm" >
+                    {{ csrf.fields | raw }}
+                {% endif %}
+                    <div class="mb-3 ">
+                        <input type="text" name="full_name" id="fullname"
+                               placeholder="Fullname"
+                               class="form-control bg-transparent rounded-0 text-white"
+                                {{ errors.full_name ? 'is-invalid' : '' }}
+                               value="{{ old.full_name }}" required/>
+                        <div class="invalid-feedback">
+                            {{ errors.fullname | first }}
+                        </div>
+                    </div>
+                    <div class="mb-3 ">
+                        <input type="email" name="email" id="email"
+                               placeholder="Email"
+                               class="form-control bg-transparent rounded-0 text-white"
+                                {{ errors.email ? 'is-invalid' : '' }}
+                               value="{{ old.email }}" required/>
+                        <div class="invalid-feedback">
+                            {{ errors.email | first }}
+                        </div>
+                    </div>
+                    <div class="form-control bg-transparent mb-3 rounded-0 d-flex {{ errors.role ? 'is-invalid' : ''}} ">
+                        <div class="signup-role">
+                            I am a
+                        </div>
+                        <div class="ms-4">
+                            <input type="radio" name="role" id="role1" value="lecturer"
+                                   class="form-check-input bg-transparent border-white " required/>
+                            <label for="role1" class="form-check-label text-white"> Lecturer</label>
+                        </div>
+                        <div class="ms-4">
+                            <input type="radio" name="role" id="role2" value="student" class="form-check-input bg-transparent border-white" required/>
+                            <label for="role2" class="form-check-label text-white"> Student</label>
+                        </div>
+                        <div class="ms-4">
+                            <input type="radio" name="role" id="role3" value="3" class="form-check-input bg-transparent border-white" required />
+                            <label for="role3" class="form-check-label text-white"> Staff</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+
+                        <input type="text" name="{{ roleID }}" id="roleNumber" placeholder="..."
+                               class="form-control bg-transparent text-white rounded-0 "
+                                {{ errors.roleID ? 'is-invalid' : '' }} required />
+                        <div class="invalid-feedback">
+                            {{ errors.roleID | first }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="password" id="password"
+                               placeholder="Password"
+                               class="form-control bg-transparent rounded-0 text-white"
+                                {{ errors.password ? 'is-invalid' : '' }} required/>
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" name="confirmPassword"
+                               id="confirmPassword"
+                               placeholder="Confirm Password"
+                               class="form-control bg-transparent rounded-0 text-white"
+                                {{ errors.confirmPassword | first }} required />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit"
+                                class="btn cs-btn signup text-white border-0 p-2 shadow">
+                            Signup
+                        </button>
+                    </div>
+                    <p class="text-center text-white fw-light mt-2">Already have an account
+                        <a href="#" role="button" class="btn-login">Login</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

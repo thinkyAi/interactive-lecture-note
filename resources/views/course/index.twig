@@ -1,0 +1,49 @@
+{% extends 'main_layout.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('course') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('course') }}
+{% endblock %}
+
+{% block title %}Course{% endblock %}
+
+{% block content %}
+{#    <div id="courseSection" class="wrapper overflow-hidden">#}
+{#        breadcrumb will be here.... #}
+
+        <div class=" mt-4 " >
+
+            <div class="px-5 course-outline ">
+                <div class="mb-4 d-flex ">
+                    <button type="button" class="btn text-white bg-primary ms-auto">
+                        <a href="/course/create" class="text-white text-decoration-none"><i class="bi bi-plus-circle"></i> Add Course</a>
+                    </button>
+                </div>
+                <div class="module-table-wrapper text-white" >
+                    <table id="courseTable"  class="table text-white ">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="">Code</th>
+                            <th style="">Course Title</th>
+                            <th style="">Course Outline</th>
+                            <th style="">Progress</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+{#    </div>#}
+{#  course outline modal  #}
+    {% include 'course/create_course_outline_modal.twig' %}
+{% endblock %}

@@ -1,0 +1,65 @@
+@import "_variables";
+
+
+.form-container-2 {
+  max-width: 550px;
+  /*border-color: var(--secondary-color);*/
+
+}
+
+select {
+  color: $white;
+  & option {
+    background-color: $navbar-light;
+    color: $white;
+    &:hover {
+      background-color: $navbar-light;
+    }
+  }
+}
+
+.form-select::after {
+  /* Target the generated arrow/caret */
+  border-color: transparent white white transparent !important; /* White arrow */
+}
+
+.form-floating > .form-control:focus ~ label::after,
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after,
+.form-floating > .form-select ~ label::after {
+  background-color: inherit !important;
+  color: #f5f5f5 !important;
+}
+
+.form-floating > .form-control:placeholder-shown {
+  padding-bottom: 20px;
+}
+
+table.dataTable {
+  margin-top: 2rem;
+  background-color: $bg-dark;
+  color: $white;
+  & tr {
+    border: $white;
+  }
+  & thead tr {
+    border-color: $white  ;
+  }
+
+}
+
+
+.course-outline {
+  //background: $navbar-light;
+}
+
+.modal-color {
+  background: $bg-dark;
+}
+
+.cs-btn-2 {
+  background-color: $navbar-light-50;
+}
+
+.btn-wrapper:hover {
+  border: 1px solid #ddd;
+}
